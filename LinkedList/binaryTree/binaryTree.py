@@ -121,7 +121,7 @@ class Tree():
         """
 
         p = self.root
-        first = None
+        first = p
         stack = []
         while p != None or len(stack) != 0:
             while p != None:
@@ -130,12 +130,13 @@ class Tree():
 
             if len(stack) != 0:
                 p = stack[-1]
-                if first == p.right:
+                if p.right == None or first == p.right:
                     stack.pop()
                     print(p.data)
+                    first = p
                     p = None
                 else:
-                    first = p
+                    #first = p.right
                     p = p.right
 
 
@@ -143,4 +144,4 @@ class Tree():
 
 if __name__ == '__main__':
     tree = Tree([5, 3, 2, 4, 1, 7, 6, 9, 8, 10])
-    tree.postorder()
+    tree.postorder2()
